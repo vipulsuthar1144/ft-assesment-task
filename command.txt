@@ -3,3 +3,5 @@
 3. npm i axios
 4. npm i react-router-dom
 5. npm i react-hot-toast
+6. npm i react-error-boundary
+7. npm install --save-dev prettier

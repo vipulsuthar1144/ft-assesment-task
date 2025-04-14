@@ -18,20 +18,18 @@ const useNetworkStatus = () => {
 
   useEffect(() => {
     const controller = new AbortController();
+    const { signal } = controller;
     window.addEventListener("load", updateNetworkStatus, {
-      signal: controller.signal,
+      signal,
     });
     window.addEventListener("online", updateNetworkStatus, {
-      signal: controller.signal,
+      signal,
     });
     window.addEventListener("offline", updateNetworkStatus, {
-      signal: controller.signal,
+      signal,
     });
 
     return () => {
-      // window.removeEventListener("load", updateNetworkStatus);
-      // window.removeEventListener("online", updateNetworkStatus);
-      // window.removeEventListener("offline", updateNetworkStatus);
       controller.abort();
     };
   }, [navigator.onLine]);

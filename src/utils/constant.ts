@@ -6,5 +6,9 @@ export enum LocalStorageKeys {
 
 export enum NavigationRoutes {
   BASE = "/",
+  AUTH = "auth",
+  LOGIN = "login",
+  SIGNUP = "signup",
   HOME = "home",
+  PROFILE = "profile",
 }
