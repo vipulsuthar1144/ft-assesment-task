@@ -1,0 +1,5 @@
+1. npm create @vite project_name 
+2. npm i -D @types/node
+3. npm i axios
+4. npm i react-router-dom
+5. npm i react-hot-toast
