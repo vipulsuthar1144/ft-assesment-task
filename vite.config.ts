@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import * as path from "path";
 
+import tailwindcss from '@tailwindcss/vite'
+
 const FRONTEND_PORT = process.env.VITE_APP_PORT;
 
 // https://vite.dev/config/
@@ -10,7 +12,7 @@ export default defineConfig({
   build: {
     outDir: "dist",
   },
-  plugins: [react()],
+  plugins: [react(),tailwindcss()],
   server: {
     port: Number(FRONTEND_PORT) || 5173,
     host: "localhost",

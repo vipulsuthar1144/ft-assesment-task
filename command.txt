@@ -5,3 +5,4 @@
 5. npm i react-hot-toast
 6. npm i react-error-boundary
 7. npm install --save-dev prettier
+8. npm install tailwindcss @tailwindcss/vite
