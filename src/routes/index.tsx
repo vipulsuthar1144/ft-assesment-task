@@ -3,29 +3,32 @@ import PublicRoutes from "@routes/Public.routes";
 import ProtectedRoutes from "@routes/Protected.routes";
 import PublicLayout from "@layouts/Public.layout";
 import ProtectedLayout from "@layouts/Protected.layout";
+import FallbackPageNotFound from "@fallback/FallbackPageNotFound";
+import FallbackErrorBoundary from "@fallback/FallbackErrorBoundary";
+import { NavigationRoutes } from "@utils/constant";
 
 const AppRoutes = () => {
   const rootRoutes = createBrowserRouter(
     [
       {
-        path: "/auth",
+        path: `${NavigationRoutes.BASE}${NavigationRoutes.AUTH}`,
         element: <PublicLayout />,
         children: PublicRoutes,
-        // errorElement: <FallbackError type="error_boundary" />,
+        errorElement: <FallbackErrorBoundary/>,
       },
       {
-        path: "/",
+        path: NavigationRoutes.BASE,
         element: <ProtectedLayout />,
         children: ProtectedRoutes,
-        // errorElement: <FallbackError type="error_boundary" />,
+        errorElement: <FallbackErrorBoundary/>,
       },
-      // {
-      // path: "*",
-      // element: <FallbackError type="page_not_found" />,
-      // },
+      {
+      path: "*",
+      element: <FallbackPageNotFound/>,
+      },
     ],
     {
-      basename: "/",
+      basename: NavigationRoutes.BASE,
     }
   );
 

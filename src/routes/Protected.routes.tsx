@@ -1,3 +1,4 @@
+import { NavigationRoutes } from "@utils/constant";
 import { Navigate, RouteObject } from "react-router-dom";
 
 const ProtectedRoutes: RouteObject[] = [
@@ -6,8 +7,8 @@ const ProtectedRoutes: RouteObject[] = [
     element: <>Protected Routes</>,
   },
   {
-    path: "home",
-    element: <Navigate to={"/"} replace={true} />,
+    path: NavigationRoutes.HOME,
+    element: <Navigate to={NavigationRoutes.BASE} replace={true} />,
   },
 ];
 

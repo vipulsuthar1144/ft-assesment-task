@@ -20,8 +20,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@assets": path.resolve(__dirname, "src/assets"),
-      "@ui": path.resolve(__dirname, "src/components/ui"),
+      "@animations": path.resolve(__dirname, "src/components/animations"),
+      "@fallback": path.resolve(__dirname, "src/components/fallback"),
       "@dialogs": path.resolve(__dirname, "src/components/dialogs"),
+      "@ui": path.resolve(__dirname, "src/components/ui"),
       "@skeletons": path.resolve(__dirname, "src/components/skeletons"),
       "@components": path.resolve(__dirname, "src/components"),
       "@config": path.resolve(__dirname, "src/config"),

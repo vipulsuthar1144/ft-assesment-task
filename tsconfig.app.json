@@ -25,8 +25,10 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
-      "@ui/*": ["src/components/ui/*"],
+      "@animations/*": ["src/components/animations/*"],
       "@dialogs/*": ["src/components/dialogs/*"],
+      "@fallback/*": ["src/components/fallback/*"],
+      "@ui/*": ["src/components/ui/*"],
       "@skeletons/*": ["src/components/skeletons/*"],
       "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],

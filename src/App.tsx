@@ -1,11 +1,12 @@
 import AppRoutes from "@/routes";
 import { Toaster } from "react-hot-toast";
-import ProviderNetworkStatus from "./componets/ProviderNetworkStatus";
 import { ErrorBoundary } from "react-error-boundary";
+import ProviderNetworkStatus from "@components/ProviderNetworkStatus";
+import FallbackErrorBoundary from "@fallback/FallbackErrorBoundary";
 
 function App() {
   return (
-    <ErrorBoundary fallback={<>Something wents wrong</>}>
+    <ErrorBoundary fallback={<FallbackErrorBoundary/>}>
       <ProviderNetworkStatus>
         <Toaster
           position="top-right"

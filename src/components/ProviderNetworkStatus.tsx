@@ -1,3 +1,4 @@
+import FallbackNetworkStatus from "@fallback/FallbackNetworkStatus";
 import useNetworkStatus from "@hooks/useNetworkStatus";
 import React from "react";
 
@@ -7,21 +8,7 @@ interface IProviderNetworkStatusProps {
 
 const ProviderNetworkStatus = ({ children }: IProviderNetworkStatusProps) => {
   const { isOnline } = useNetworkStatus();
-
-  if (!isOnline)
-    return (
-      <div
-        style={{
-          width: "100%",
-          height: "100svh",
-          backgroundColor: "black",
-          color: "red",
-        }}
-      >
-        Netwok Error
-      </div>
-    );
-
+  if (!isOnline) return <FallbackNetworkStatus/>;
   return <>{children}</>;
 };
 

@@ -1,4 +1,4 @@
-import Image from "@/componets/ui/Image";
+import Image from "@ui/Image";
 
 const Home = () => {
   return ( <div className="p-8">
