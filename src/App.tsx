@@ -6,7 +6,7 @@ import FallbackErrorBoundary from "@fallback/FallbackErrorBoundary";
 
 function App() {
   return (
-    <ErrorBoundary fallback={<FallbackErrorBoundary/>}>
+    <ErrorBoundary fallback={<FallbackErrorBoundary />}>
       <ProviderNetworkStatus>
         <Toaster
           position="top-right"

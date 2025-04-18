@@ -26,13 +26,13 @@ const Image: React.FC<ImageProps> = ({
       setLoading(true);
       setError(false);
 
-       if (lowResSrc) {
+      if (lowResSrc) {
         const lowImg = new window.Image();
         lowImg.src = lowResSrc;
 
         lowImg.onload = () => {
           setSrc(lowResSrc);
-           setLoading(false);
+          setLoading(false);
           loadHighResOnly();
         };
 
@@ -43,7 +43,7 @@ const Image: React.FC<ImageProps> = ({
         loadHighResOnly();
       }
     };
-    
+
     const loadHighResOnly = () => {
       const highImg = new window.Image();
       highImg.src = highResSrc;
@@ -63,17 +63,27 @@ const Image: React.FC<ImageProps> = ({
   }, [lowResSrc, highResSrc]);
 
   if (loading) {
-    return (<div className="w-full h-full grid place-items-center">
+    return (
+      <div className="w-full h-full grid place-items-center">
         <div className={loaderClassName} />
-        </div>)
-        ;
+      </div>
+    );
   }
 
   if (error) {
-    return <img src={fallbackSrc} alt="error" className={imgClassName} {...rest} />;
+    return (
+      <img src={fallbackSrc} alt="error" className={imgClassName} {...rest} />
+    );
   }
 
-  return <img src={src!} alt={alt} className={`object-cover w-full h-full ${imgClassName}`} {...rest} />;
+  return (
+    <img
+      src={src!}
+      alt={alt}
+      className={`object-cover w-full h-full ${imgClassName}`}
+      {...rest}
+    />
+  );
 };
 
 export default Image;

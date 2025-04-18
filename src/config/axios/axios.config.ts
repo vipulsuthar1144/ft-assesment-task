@@ -6,40 +6,36 @@ import {
   responseHandler,
 } from "@config/axios/axios.interceptors";
 
-const BASE_API_URL: string = import.meta.env.VITE_APP_API_ENDPOINT;
-const AUTH_BASE_URL: string = import.meta.env.VITE_APP_AUTH_API_BASE_ENDPOINT;
+const BASE_API_URL: string = import.meta.env.VITE_BASE_API_URL;
 
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-  "Content-Type": "application/x-www-form-urlencoded",
-};
 const baseInstance = axios.create({
-  baseURL: AUTH_BASE_URL,
-  headers: headers,
+  baseURL: BASE_API_URL,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
 });
 
 baseInstance.interceptors.response.use(
-  (response) => responseHandler(response),
-  (error) => responseErrorHandler(error)
+  response => responseHandler(response),
+  error => responseErrorHandler(error)
 );
 
 const apiInstance = axios.create({
   baseURL: BASE_API_URL,
   headers: {
-    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
   },
   timeout: 30000,
 });
 
 apiInstance.interceptors.request.use(
-  (request) => requestHandler(request),
-  (error) => requestErrorHandler(error)
+  request => requestHandler(request),
+  error => requestErrorHandler(error)
 );
 
 apiInstance.interceptors.response.use(
-  (response) => responseHandler(response),
-  (error) => responseErrorHandler(error)
+  response => responseHandler(response),
+  error => responseErrorHandler(error)
 );
 
-export { apiInstance };
+export { apiInstance, baseInstance };

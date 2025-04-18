@@ -1,11 +1,11 @@
 import useLocalStorage from "@hooks/useLocalStorage";
-import { LocalStorageKeys } from "@utils/constant";
+import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
 import { Navigate, Outlet } from "react-router-dom";
 
 const PublicLayout = () => {
   const [accessToken, _] = useLocalStorage(LocalStorageKeys.ACCESS_TOKEN, "");
   if (accessToken) {
-    return <Navigate to="/" replace={true} />;
+    return <Navigate to={NavigationRoutes.BASE} replace={true} />;
   }
   return (
     <div

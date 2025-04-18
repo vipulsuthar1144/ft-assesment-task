@@ -8,9 +8,10 @@ export const getAccessToken = (): string => {
 };
 
 const requestHandler = (request: any) => {
-  // store.dispatch(setTopLoadingProgress(30));
-  request.headers.Authorization = `Bearer ${getAccessToken()}`;
-  request.headers["Access-Control-Allow-Origin"] = "*";
+  const token = getAccessToken();
+  if (token) {
+    request.headers.Authorization = `Bearer ${token}`;
+  }
   return request;
 };
 

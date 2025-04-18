@@ -1,7 +1,7 @@
 export enum LocalStorageKeys {
   ACCESS_TOKEN = "ACCESS_TOKEN",
+  USER_DATA = "USER_DATA",
   THEME = "theme",
-  LANGUAGE = "language",
 }
 
 export enum NavigationRoutes {

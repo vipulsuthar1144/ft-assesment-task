@@ -11,20 +11,20 @@ const AppRoutes = () => {
   const rootRoutes = createBrowserRouter(
     [
       {
-        path: `${NavigationRoutes.BASE}${NavigationRoutes.AUTH}`,
+        path: `${NavigationRoutes.BASE}${NavigationRoutes.LOGIN}`,
         element: <PublicLayout />,
         children: PublicRoutes,
-        errorElement: <FallbackErrorBoundary/>,
+        errorElement: <FallbackErrorBoundary />,
       },
       {
         path: NavigationRoutes.BASE,
         element: <ProtectedLayout />,
         children: ProtectedRoutes,
-        errorElement: <FallbackErrorBoundary/>,
+        errorElement: <FallbackErrorBoundary />,
       },
       {
-      path: "*",
-      element: <FallbackPageNotFound/>,
+        path: "*",
+        element: <FallbackPageNotFound />,
       },
     ],
     {

@@ -8,7 +8,7 @@ interface IProviderNetworkStatusProps {
 
 const ProviderNetworkStatus = ({ children }: IProviderNetworkStatusProps) => {
   const { isOnline } = useNetworkStatus();
-  if (!isOnline) return <FallbackNetworkStatus/>;
+  if (!isOnline) return <FallbackNetworkStatus />;
   return <>{children}</>;
 };
 

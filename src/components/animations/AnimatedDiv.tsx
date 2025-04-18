@@ -16,8 +16,8 @@ type Props = {
   className: string; // Allow user to pass custom classes
   style?: React.CSSProperties;
   inViewport?: boolean; // trigger animation only when in viewport
-  once?: boolean;       // animate only once
-  margin?: any;      // rootMargin for fine-tuning in-view detection
+  once?: boolean; // animate only once
+  margin?: any; // rootMargin for fine-tuning in-view detection
 };
 
 const getVariants = (type: AnimationType, duration: number, delay: number) => {
@@ -62,8 +62,6 @@ const getVariants = (type: AnimationType, duration: number, delay: number) => {
       };
   }
 };
-
-
 
 const AnimatedDiv = ({
   children,

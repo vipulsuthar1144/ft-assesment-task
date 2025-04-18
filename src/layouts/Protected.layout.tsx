@@ -1,11 +1,11 @@
 import useLocalStorage from "@hooks/useLocalStorage";
-import { LocalStorageKeys } from "@utils/constant";
+import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedLayout = () => {
   const [accessToken, _] = useLocalStorage(LocalStorageKeys.ACCESS_TOKEN, "");
   if (!accessToken) {
-    return <Navigate to="/auth" replace={true} />;
+    return <Navigate to={`/${NavigationRoutes.LOGIN}`} replace={true} />;
   }
   return (
     <div

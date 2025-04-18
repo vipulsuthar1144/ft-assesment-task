@@ -1,8 +1,5 @@
-
 const FallbackError = () => {
-  return (
-    <div>FallbackError</div>
-  )
-}
+  return <div>FallbackError</div>;
+};
 
-export default FallbackError
+export default FallbackError;

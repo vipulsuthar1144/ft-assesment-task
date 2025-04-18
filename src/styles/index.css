@@ -1,9 +1,10 @@
 @import "tailwindcss";
 
-
 @layer base {
   /* Apply box-sizing to all elements and their pseudo-elements */
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
@@ -15,10 +16,10 @@
 
   /* Set the base font for the HTML element */
   body {
-  width: 100%;
-  min-height: 100svh;
-  color: wheat;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    width: 100%;
+    min-height: 100svh;
+    color: wheat;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   }
 
   button {
