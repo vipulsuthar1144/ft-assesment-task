@@ -10,5 +10,8 @@ export enum NavigationRoutes {
   LOGIN = "login",
   SIGNUP = "signup",
   HOME = "home",
+  ARTICLES = "articles",
+  PRIVACY_POLICY = "privacy-and-policy",
+  FAQs = "faqs",
   PROFILE = "profile",
 }

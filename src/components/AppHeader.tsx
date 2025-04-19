@@ -1,27 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import useLocalStorage from "@hooks/useLocalStorage";
+import { IUserSchema } from "@schemas/signin.schema";
+import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
+import _ from "lodash";
 import {
   Bell,
-  ChevronDown,
+  ChevronDownCircle,
   Key,
   LogOut,
   SearchIcon,
   Settings,
-  UserCircle2,
+  UserCircle2
 } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import useLocalStorage from "@hooks/useLocalStorage";
-import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
-import { IUserSchema } from "@schemas/signin.schema";
-import _ from "lodash";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AppHeader() {
@@ -39,8 +39,8 @@ export default function AppHeader() {
       <div className="flex-1 flex items-center justify-center">
         <div className="relative max-w-sm w-full">
           <Input placeholder="Search" className="pl-10 bg-gray-100" />
-          <span className="absolute left-3 top-1.5 text-gray-400">
-            <SearchIcon />
+          <span className="absolute left-3 top-2 text-gray-400">
+            <SearchIcon size={20} />
           </span>
         </div>
       </div>
@@ -80,7 +80,8 @@ export default function AppHeader() {
                   {_.capitalize(ADMIN_DATA.userType)}
                 </div>
               </div>
-              <ChevronDown className="w-4 h-4 text-muted-foreground self-end" />
+            
+              <ChevronDownCircle className="w-4 h-4 text-muted-foreground/50 self-end" />
             </div>
           </PopoverTrigger>
 

@@ -12,7 +12,7 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 const Image: React.FC<ImageProps> = ({
   lowResSrc,
   highResSrc,
-  fallbackSrc = "https://via.placeholder.com/150?text=Image+Error",
+  fallbackSrc = "https://static.thenounproject.com/png/2635330-200.png",
   alt = "image",
   loaderClassName = "w-10 h-10 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin",
   imgClassName = "object-cover w-full h-full",

@@ -11,6 +11,7 @@ const requestHandler = (request: any) => {
   const token = getAccessToken();
   if (token) {
     request.headers.Authorization = `Bearer ${token}`;
+    request.headers["Access-Control-Allow-Origin"] = "*"
   }
   return request;
 };

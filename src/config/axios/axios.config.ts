@@ -5,8 +5,9 @@ import {
   responseErrorHandler,
   responseHandler,
 } from "@config/axios/axios.interceptors";
+import { BASE_API_URL } from "@utils/api-constant";
 
-const BASE_API_URL: string = import.meta.env.VITE_BASE_API_URL;
+
 
 const baseInstance = axios.create({
   baseURL: BASE_API_URL,

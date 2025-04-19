@@ -1,24 +1,24 @@
 import { appLogo } from "@assets/index";
 import * as Popover from "@radix-ui/react-popover";
 import Image from "@ui/Image";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, FilePlus, LayoutDashboardIcon } from "lucide-react";
 import { useRef, useState } from "react";
 
 const sidebarItems = [
-  { label: "Dashboard", icon: "📊" },
-  { label: "Article", icon: "📰" },
-  { label: "Auto dealership", icon: "🚗" },
+  { label: "Dashboard", icon: LayoutDashboardIcon },
+  { label: "Article", icon: FilePlus },
+  { label: "Auto dealership", icon: FilePlus },
   {
     label: "Blog",
-    icon: "📝",
+    icon: FilePlus,
     children: ["Post 1", "Post 2"],
   },
   {
     label: "Career",
-    icon: "💼",
+    icon: FilePlus,
     children: ["Jobs", "Internship"],
   },
-  { label: "FAQ’s", icon: "❓" },
+  { label: "FAQ’s", icon: FilePlus },
 ];
 
 export default function AppSidebar() {
@@ -40,7 +40,7 @@ export default function AppSidebar() {
                 />
               ) : (
                 <button className="flex items-center gap-3 w-full px-4 py-2 rounded hover:bg-gray-100">
-                  <span>{item.icon}</span>
+                 <item.icon size={20}/>
                   <span className="text-sm font-medium">{item.label}</span>
                 </button>
               )}
@@ -54,15 +54,15 @@ export default function AppSidebar() {
 
 const PopoverWithSameWidth = ({
   label,
-  icon,
   childrenItems,
 }: {
   label: string;
-  icon: string;
+  icon: any;
   childrenItems: string[];
 }) => {
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const [triggerWidth, setTriggerWidth] = useState(0);
+  
 
   return (
     <Popover.Root
@@ -74,7 +74,7 @@ const PopoverWithSameWidth = ({
           className="flex justify-between items-center w-full px-4 py-2 rounded hover:bg-gray-100"
         >
           <div className="flex items-center gap-3">
-            <span>{icon}</span>
+           {/* <icon/> */}
             <span className="text-sm font-medium">{label}</span>
           </div>
           <ChevronDown className="w-4 h-4 text-gray-500" />

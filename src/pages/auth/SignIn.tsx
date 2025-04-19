@@ -131,7 +131,7 @@ const SignIn = () => {
                       </button>
                     </div>
                     <FormControl>
-                      <Input type="password" {...field} />
+                      <Input type="password" placeholder="admin@1234" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
