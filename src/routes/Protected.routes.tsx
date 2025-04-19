@@ -1,14 +1,13 @@
-
 import Articles from "@pages/articles/Articles";
+import Dashboard from "@pages/dashboard/Dashboard";
 import Faqs from "@pages/faqs/Faqs";
-import Home from "@pages/Home";
 import { NavigationRoutes } from "@utils/constant";
 import { Navigate, RouteObject } from "react-router-dom";
 
 const ProtectedRoutes: RouteObject[] = [
   {
     index: true,
-    element: <Faqs/>,
+    element: <Dashboard />,
   },
   {
     path: NavigationRoutes.HOME,
@@ -16,11 +15,11 @@ const ProtectedRoutes: RouteObject[] = [
   },
   {
     path: NavigationRoutes.ARTICLES,
-    element: <Articles/>,
+    element: <Articles />,
   },
   {
     path: NavigationRoutes.FAQs,
-    element: <Faqs/>,
+    element: <Faqs />,
   },
 ];
 

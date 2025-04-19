@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -50,10 +50,8 @@ export default function FaqsForm({
   mode,
   defaultValues,
 }: Props) {
-
-
   const dispatch = useAppDispatch();
-  const {isFaqsCRUDLoading} = useAppSelector(state=>state.faqs)
+  const { isFaqsCRUDLoading } = useAppSelector(state => state.faqs);
 
   const form = useForm<FaqsFormData>({
     resolver: zodResolver(schema),
@@ -64,42 +62,38 @@ export default function FaqsForm({
   });
 
   useEffect(() => {
-  if (defaultValues && mode === "edit") {
-    form.reset({
-      question: defaultValues.question || "",
-      answer: defaultValues.answer || "",
-     
-    });
-  }
-}, [defaultValues, mode, form]);
-
+    if (defaultValues && mode === "edit") {
+      form.reset({
+        question: defaultValues.question || "",
+        answer: defaultValues.answer || "",
+      });
+    }
+  }, [defaultValues, mode, form]);
 
   const onSubmit = async (data: FaqsFormData) => {
     try {
-
-    
       if (mode === "create") {
         await dispatch(FaqsAPI.create(data)).unwrap();
         toastUtils.success("Faqs created");
       } else {
-       if(defaultValues?.id){
- await dispatch(FaqsAPI.updateById({data:data,id:defaultValues?.id}));
-        toastUtils.success("Faqs updated");
-       }
+        if (defaultValues?.id) {
+          await dispatch(
+            FaqsAPI.updateById({ data: data, id: defaultValues?.id })
+          );
+          toastUtils.success("Faqs updated");
+        }
       }
 
-     onDialogClose()
+      onDialogClose();
     } catch (err: any) {
       toastUtils.error(err?.message ?? "Something went wrong");
     }
   };
 
-  const onDialogClose = ()=>{
-     form.reset();
-      onClose();
-  }
-
- 
+  const onDialogClose = () => {
+    form.reset();
+    onClose();
+  };
 
   return (
     <Dialog open={open} onOpenChange={onDialogClose}>
@@ -110,16 +104,15 @@ export default function FaqsForm({
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
-           
-
             {/* Title Field */}
             <FormField
               control={form.control}
               name="question"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs">Question<span className="text-red-500">*</span></FormLabel>
+                  <FormLabel className="text-xs">
+                    Question<span className="text-red-500">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -139,13 +132,14 @@ export default function FaqsForm({
               name="answer"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs">Answer<span className="text-red-500">*</span></FormLabel>
+                  <FormLabel className="text-xs">
+                    Answer<span className="text-red-500">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       placeholder="Enter answer"
                       rows={4}
-                     
                       className="text-xs resize-none bg-gray-100"
                       disabled={isFaqsCRUDLoading}
                     />
@@ -157,9 +151,12 @@ export default function FaqsForm({
 
             {/* Buttons */}
             <div className="flex justify-center gap-2">
-            
-              <LoaderButton label="Save" type="submit" className="w-full max-w-xs" isLoading={isFaqsCRUDLoading}/>
-          
+              <LoaderButton
+                label="Save"
+                type="submit"
+                className="w-full max-w-xs"
+                isLoading={isFaqsCRUDLoading}
+              />
             </div>
           </form>
         </Form>

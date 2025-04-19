@@ -1,4 +1,3 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { ArticleAPI } from "../thunk-services/article.thunk";
 import { IArticleSchema } from "@schemas/article.schema";
@@ -23,15 +22,15 @@ const initialState: IArticleSliceSchema = {
   articleList: [],
   articleData: null,
   articleListMetaData: {
-   totalDocs: 0,
-        limit: ITEM_PER_PAGE,
-        totalPages: 0,
-        page: 0,
-        pagingCounter: 0,
-        hasPrevPage: false,
-        hasNextPage: false,
-        prevPage: null,
-        nextPage: null
+    totalDocs: 0,
+    limit: ITEM_PER_PAGE,
+    totalPages: 0,
+    page: 0,
+    pagingCounter: 0,
+    hasPrevPage: false,
+    hasNextPage: false,
+    prevPage: null,
+    nextPage: null,
   },
   isArticleCRUDError: false,
   isArticleCRUDLoading: false,
@@ -41,14 +40,14 @@ const articleSlice = createSlice({
   name: "article",
   initialState: initialState,
   reducers: {
-    resetArticleLoadingState: (state) => {
+    resetArticleLoadingState: state => {
       state.isArticleLoading = false;
       state.isArticleError = false;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(ArticleAPI.getAll.pending, (state) => {
+      .addCase(ArticleAPI.getAll.pending, state => {
         state.isArticleLoading = true;
         state.isArticleError = false;
       })
@@ -56,9 +55,10 @@ const articleSlice = createSlice({
         state.isArticleLoading = false;
         state.isArticleError = false;
         state.articleList = action.payload.data?.docs ?? [];
-        state.articleListMetaData = action.payload.data ?? initialState.articleListMetaData;
+        state.articleListMetaData =
+          action.payload.data ?? initialState.articleListMetaData;
       })
-      .addCase(ArticleAPI.getAll.rejected, (state) => {
+      .addCase(ArticleAPI.getAll.rejected, state => {
         state.isArticleLoading = false;
         state.isArticleError = true;
       })
@@ -75,44 +75,52 @@ const articleSlice = createSlice({
       //   state.isArticleLoading = false;
       //   state.isArticleError = true;
       // })
-      .addCase(ArticleAPI.create.pending, (state) => {
+      .addCase(ArticleAPI.create.pending, state => {
         state.isArticleCRUDLoading = true;
         state.isArticleCRUDError = false;
       })
       .addCase(ArticleAPI.create.fulfilled, (state, action) => {
         state.isArticleCRUDLoading = false;
         state.isArticleCRUDError = false;
-        state.articleList = appendAtIndex(state.articleList, action.payload?.data ?? {}, 0);
+        state.articleList = appendAtIndex(
+          state.articleList,
+          action.payload?.data ?? {},
+          0
+        );
       })
-      .addCase(ArticleAPI.create.rejected, (state) => {
+      .addCase(ArticleAPI.create.rejected, state => {
         state.isArticleCRUDLoading = false;
         state.isArticleCRUDError = true;
       })
-      .addCase(ArticleAPI.updateById.pending, (state) => {
+      .addCase(ArticleAPI.updateById.pending, state => {
         state.isArticleCRUDLoading = true;
         state.isArticleCRUDError = false;
       })
       .addCase(ArticleAPI.updateById.fulfilled, (state, action) => {
         state.isArticleCRUDLoading = false;
         state.isArticleCRUDError = false;
-        state.articleList = [...state.articleList].map((item) =>
-          item._id === action.payload?.data?._id ? (action.payload.data ?? {}) : item
+        state.articleList = [...state.articleList].map(item =>
+          item._id === action.payload?.data?._id
+            ? (action.payload.data ?? {})
+            : item
         );
       })
-      .addCase(ArticleAPI.updateById.rejected, (state) => {
+      .addCase(ArticleAPI.updateById.rejected, state => {
         state.isArticleCRUDLoading = false;
         state.isArticleCRUDError = true;
       })
-      .addCase(ArticleAPI.deleteById.pending, (state) => {
+      .addCase(ArticleAPI.deleteById.pending, state => {
         state.isArticleCRUDLoading = true;
         state.isArticleCRUDError = false;
       })
       .addCase(ArticleAPI.deleteById.fulfilled, (state, action) => {
         state.isArticleCRUDLoading = false;
         state.isArticleCRUDError = false;
-        state.articleList = [...state.articleList].filter((item) => item._id !== action.payload.data?._id);
+        state.articleList = [...state.articleList].filter(
+          item => item._id !== action.payload.data?._id
+        );
       })
-      .addCase(ArticleAPI.deleteById.rejected, (state) => {
+      .addCase(ArticleAPI.deleteById.rejected, state => {
         state.isArticleCRUDLoading = false;
         state.isArticleCRUDError = true;
       });

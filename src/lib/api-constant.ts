@@ -1,5 +1,5 @@
 import { IQueryParams } from "@schemas/base.schema";
-import _ from "lodash"
+import _ from "lodash";
 
 export enum ApiEndpoints {
   login = "admin/login",
@@ -15,24 +15,24 @@ export enum ApiEndpoints {
   createAutoDealership = "admin/AutoDealerShip/addAutoDealerShip",
   updateAutoDealership = "admin/AutoDealerShip/updateAutoDealerShip",
   deleteAutoDealership = "admin/AutoDealerShip/deleteAutoDealerShip",
+  dashboard = "admin/getDashboard",
 }
 
-export const ITEM_PER_PAGE = 50
+export const ITEM_PER_PAGE = 50;
 
-export const BASE_API_URL = import.meta.env.VITE_BASE_API_URL
+export const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
 
-
-export const parseQueryParams = <U extends IQueryParams>(endpoint: string, filter: U) => {
+export const parseQueryParams = <U extends IQueryParams>(
+  endpoint: string,
+  filter: U
+) => {
   const queryParams = new URLSearchParams();
 
   Object.entries(filter).forEach(([key, value]) => {
     if (!_.isEmpty(String(value)) && value != undefined) {
-      
-        queryParams.append(key, value);
-     
+      queryParams.append(key, value);
     }
   });
 
   return `${endpoint}?${queryParams.toString()}`;
 };
-

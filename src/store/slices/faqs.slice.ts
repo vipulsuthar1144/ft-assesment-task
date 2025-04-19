@@ -1,5 +1,4 @@
-
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IFaqsSchema } from "@schemas/faqs.schema";
 import { appendAtIndex } from "@utils/genaralFunctions";
 import { FaqsAPI } from "../thunk-services/faqs.thunk";
@@ -24,14 +23,19 @@ const faqsSlice = createSlice({
   name: "faqs",
   initialState: initialState,
   reducers: {
-    resetFaqsLoadingState: (state) => {
+    resetFaqsLoadingState: state => {
       state.isFaqsLoading = false;
       state.isFaqsError = false;
     },
+    removeItemFromFaqslist: (state, action: PayloadAction<IFaqsSchema>) => {
+      state.faqsList = [...state.faqsList].filter(
+        item => item._id !== action.payload?._id
+      );
+    },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(FaqsAPI.getAll.pending, (state) => {
+      .addCase(FaqsAPI.getAll.pending, state => {
         state.isFaqsLoading = true;
         state.isFaqsError = false;
       })
@@ -39,9 +43,8 @@ const faqsSlice = createSlice({
         state.isFaqsLoading = false;
         state.isFaqsError = false;
         state.faqsList = action.payload?.data ?? [];
-      
       })
-      .addCase(FaqsAPI.getAll.rejected, (state) => {
+      .addCase(FaqsAPI.getAll.rejected, state => {
         state.isFaqsLoading = false;
         state.isFaqsError = true;
       })
@@ -58,50 +61,56 @@ const faqsSlice = createSlice({
       //   state.isFaqsLoading = false;
       //   state.isFaqsError = true;
       // })
-      .addCase(FaqsAPI.create.pending, (state) => {
+      .addCase(FaqsAPI.create.pending, state => {
         state.isFaqsCRUDLoading = true;
         state.isFaqsCRUDError = false;
       })
       .addCase(FaqsAPI.create.fulfilled, (state, action) => {
         state.isFaqsCRUDLoading = false;
         state.isFaqsCRUDError = false;
-        state.faqsList = appendAtIndex(state.faqsList, action.payload?.data ?? {}, 0);
+        state.faqsList = appendAtIndex(
+          state.faqsList,
+          action.payload?.data ?? {},
+          0
+        );
       })
-      .addCase(FaqsAPI.create.rejected, (state) => {
+      .addCase(FaqsAPI.create.rejected, state => {
         state.isFaqsCRUDLoading = false;
         state.isFaqsCRUDError = true;
       })
-      .addCase(FaqsAPI.updateById.pending, (state) => {
+      .addCase(FaqsAPI.updateById.pending, state => {
         state.isFaqsCRUDLoading = true;
         state.isFaqsCRUDError = false;
       })
       .addCase(FaqsAPI.updateById.fulfilled, (state, action) => {
         state.isFaqsCRUDLoading = false;
         state.isFaqsCRUDError = false;
-        state.faqsList = [...state.faqsList].map((item) =>
-          item._id === action.payload?.data?._id ? (action.payload.data ?? {}) : item
+        state.faqsList = [...state.faqsList].map(item =>
+          item._id === action.payload?.data?._id
+            ? (action.payload.data ?? {})
+            : item
         );
       })
-      .addCase(FaqsAPI.updateById.rejected, (state) => {
+      .addCase(FaqsAPI.updateById.rejected, state => {
         state.isFaqsCRUDLoading = false;
         state.isFaqsCRUDError = true;
       })
-      .addCase(FaqsAPI.deleteById.pending, (state) => {
+      .addCase(FaqsAPI.deleteById.pending, state => {
         state.isFaqsCRUDLoading = true;
         state.isFaqsCRUDError = false;
       })
-      .addCase(FaqsAPI.deleteById.fulfilled, (state, action) => {
+      .addCase(FaqsAPI.deleteById.fulfilled, state => {
         state.isFaqsCRUDLoading = false;
         state.isFaqsCRUDError = false;
-        state.faqsList = [...state.faqsList].filter((item) => item._id !== action.payload.data?._id);
       })
-      .addCase(FaqsAPI.deleteById.rejected, (state) => {
+      .addCase(FaqsAPI.deleteById.rejected, state => {
         state.isFaqsCRUDLoading = false;
         state.isFaqsCRUDError = true;
       });
   },
 });
 
-export const { resetFaqsLoadingState } = faqsSlice.actions;
+export const { resetFaqsLoadingState, removeItemFromFaqslist } =
+  faqsSlice.actions;
 
 export default faqsSlice.reducer;

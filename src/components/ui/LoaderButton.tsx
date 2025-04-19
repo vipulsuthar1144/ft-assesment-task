@@ -75,7 +75,12 @@ export const LoaderButton = ({
     );
   };
   return (
-    <button type={type} disabled={isLoading || isDisabled} onClick={onClick} className={classname}>
+    <button
+      type={type}
+      disabled={isLoading || isDisabled}
+      onClick={onClick}
+      className={classname}
+    >
       {renderContent()}
     </button>
   );

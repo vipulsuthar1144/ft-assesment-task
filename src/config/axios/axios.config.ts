@@ -7,8 +7,6 @@ import {
 } from "@config/axios/axios.interceptors";
 import { BASE_API_URL } from "@utils/api-constant";
 
-
-
 const baseInstance = axios.create({
   baseURL: BASE_API_URL,
   headers: {

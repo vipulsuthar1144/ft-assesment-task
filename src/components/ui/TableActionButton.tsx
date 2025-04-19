@@ -23,7 +23,7 @@ const TableActionButton = ({
         <Eye size={20} />
       </button> */}
       <button
-        onClick={(e) => {
+        onClick={e => {
           e.stopPropagation();
           onEditClick();
         }}
@@ -33,7 +33,7 @@ const TableActionButton = ({
         Edit
       </button>
       <button
-        onClick={(e) => {
+        onClick={e => {
           e.stopPropagation();
           onDeleteClick();
         }}

@@ -22,12 +22,16 @@ import {
   Menu,
   SearchIcon,
   Settings,
-  UserCircle2
+  UserCircle2,
 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AppHeader({ onMenuClick }: { onMenuClick: VoidFunction }) {
+export default function AppHeader({
+  onMenuClick,
+}: {
+  onMenuClick: VoidFunction;
+}) {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const [ADMIN_DATA] = useLocalStorage<IUserSchema>(
@@ -41,7 +45,7 @@ export default function AppHeader({ onMenuClick }: { onMenuClick: VoidFunction }
       <div className="px-5 text-center">
         <Image highResSrc={appLogo} alt="Logo" className="h-12 aspect-square" />
       </div>
-     
+
       {/* Search Bar */}
       <div className="flex-1 hidden md:flex items-center justify-center">
         <div className="relative max-w-sm w-full">
@@ -87,7 +91,7 @@ export default function AppHeader({ onMenuClick }: { onMenuClick: VoidFunction }
                   {_.capitalize(ADMIN_DATA.userType)}
                 </div>
               </div>
-            
+
               <ChevronDownCircle className="w-4 h-4 text-muted-foreground/50 self-end" />
             </div>
           </PopoverTrigger>
@@ -122,7 +126,7 @@ export default function AppHeader({ onMenuClick }: { onMenuClick: VoidFunction }
           </PopoverContent>
         </Popover>
 
-         <button
+        <button
           onClick={onMenuClick}
           className="p-2 rounded hover:bg-gray-100 block md:hidden dark:hover:bg-gray-800"
           aria-label="Toggle Dark Mode"

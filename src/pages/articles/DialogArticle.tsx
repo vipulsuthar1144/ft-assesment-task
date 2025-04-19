@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -32,8 +32,8 @@ const schema = z.object({
   description: z.string().min(1, "Description is required"),
   image: z
     .any()
-    .refine((file) => file?.length === 1, "Image is required").optional()
-    ,
+    .refine(file => file?.length === 1, "Image is required")
+    .optional(),
 });
 
 type ArticleFormData = z.infer<typeof schema>;
@@ -56,10 +56,8 @@ export default function ArticleForm({
   mode,
   defaultValues,
 }: Props) {
-
-
   const dispatch = useAppDispatch();
-  const {isArticleCRUDLoading} = useAppSelector(state=>state.article)
+  const { isArticleCRUDLoading } = useAppSelector(state => state.article);
 
   const form = useForm<ArticleFormData>({
     resolver: zodResolver(schema),
@@ -71,22 +69,19 @@ export default function ArticleForm({
   });
 
   useEffect(() => {
-  if (defaultValues && mode === "edit") {
-    form.reset({
-      title: defaultValues.title || "",
-      description: defaultValues.description || "",
-      image: undefined, // File input can't be pre-filled — leave as undefined
-    });
-  }
-}, [defaultValues, mode, form]);
+    if (defaultValues && mode === "edit") {
+      form.reset({
+        title: defaultValues.title || "",
+        description: defaultValues.description || "",
+        image: undefined, // File input can't be pre-filled — leave as undefined
+      });
+    }
+  }, [defaultValues, mode, form]);
 
   const image = form.watch("image");
 
   const onSubmit = async (data: ArticleFormData) => {
     try {
-
-    
-      
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
@@ -94,89 +89,91 @@ export default function ArticleForm({
         formData.append("image", data.image[0]);
       }
 
-    
-      
       if (mode === "create") {
         await dispatch(ArticleAPI.create(formData)).unwrap();
         toastUtils.success("Article created");
       } else {
-       if(defaultValues?.id){
- await dispatch(ArticleAPI.updateById({data:{title: data.title,description:data.description},id:defaultValues?.id}));
-        toastUtils.success("Article updated");
-       }
+        if (defaultValues?.id) {
+          await dispatch(
+            ArticleAPI.updateById({
+              data: { title: data.title, description: data.description },
+              id: defaultValues?.id,
+            })
+          );
+          toastUtils.success("Article updated");
+        }
       }
 
-     onDialogClose()
+      onDialogClose();
     } catch (err: any) {
       toastUtils.error(err?.message ?? "Something went wrong");
     }
   };
 
-  const onDialogClose = ()=>{
-     form.reset();
-      onClose();
-  }
-
- 
+  const onDialogClose = () => {
+    form.reset();
+    onClose();
+  };
 
   return (
     <Dialog open={open} onOpenChange={onDialogClose}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
-          <DialogTitle>{mode === "create" ? "Add" : "Edit"} Article</DialogTitle>
+          <DialogTitle>
+            {mode === "create" ? "Add" : "Edit"} Article
+          </DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-
             {/* Image Upload */}
             <FormField
-  control={form.control}
-  name="image"
-  render={({ field }) => (
-    <FormItem className="flex flex-col items-center gap-2">
-      <FormLabel htmlFor="image-upload" className="cursor-pointer">
-        {image?.[0] ? (
-          <img
-            src={URL.createObjectURL(image[0])}
-            alt="Preview"
-            className="w-20 h-20 rounded-full object-cover"
-          />
-        ) : defaultValues?.imageUrl ? (
-          <Image
-            highResSrc={defaultValues.imageUrl}
-            alt="Preview"
-            className="w-20 h-20 rounded-full object-cover"
-          />
-        ) : (
-          <div className="w-20 h-20 grid place-content-center bg-gray-200 p-2 rounded-full">
-
-            <Image
-              highResSrc={"https://static.thenounproject.com/png/2635330-200.png"}
-              alt="Preview"
-              className="w-10 h-10 object-contain"
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem className="flex flex-col items-center gap-2">
+                  <FormLabel htmlFor="image-upload" className="cursor-pointer">
+                    {image?.[0] ? (
+                      <img
+                        src={URL.createObjectURL(image[0])}
+                        alt="Preview"
+                        className="w-20 h-20 rounded-full object-cover"
+                      />
+                    ) : defaultValues?.imageUrl ? (
+                      <Image
+                        highResSrc={defaultValues.imageUrl}
+                        alt="Preview"
+                        className="w-20 h-20 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-20 h-20 grid place-content-center bg-gray-200 p-2 rounded-full">
+                        <Image
+                          highResSrc={
+                            "https://static.thenounproject.com/png/2635330-200.png"
+                          }
+                          alt="Preview"
+                          className="w-10 h-10 object-contain"
+                        />
+                      </div>
+                    )}
+                  </FormLabel>
+                  <FormControl>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      id="image-upload"
+                      className="hidden"
+                      disabled={mode == "edit"}
+                      onChange={e => {
+                        field.onChange(e.target.files);
+                      }}
+                    />
+                  </FormControl>
+                  <span className="text-sm text-blue-600">Upload Image</span>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          </div>
-        )}
-      </FormLabel>
-      <FormControl>
-        <input
-          type="file"
-          accept="image/*"
-          id="image-upload"
-          className="hidden"
-          disabled= {mode == "edit"}
-          onChange={(e) => {
-            field.onChange(e.target.files);
-          }}
-        />
-      </FormControl>
-      <span className="text-sm text-blue-600">Upload Image</span>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
-
 
             {/* Title Field */}
             <FormField
@@ -184,7 +181,9 @@ export default function ArticleForm({
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs">Title<span className="text-red-500">*</span></FormLabel>
+                  <FormLabel className="text-xs">
+                    Title<span className="text-red-500">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -204,13 +203,14 @@ export default function ArticleForm({
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xs">Description<span className="text-red-500">*</span></FormLabel>
+                  <FormLabel className="text-xs">
+                    Description<span className="text-red-500">*</span>
+                  </FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}
                       placeholder="Enter article description"
                       rows={4}
-                     
                       className="text-xs resize-none bg-gray-100"
                       disabled={isArticleCRUDLoading}
                     />
@@ -222,9 +222,12 @@ export default function ArticleForm({
 
             {/* Buttons */}
             <div className="flex justify-center gap-2">
-            
-              <LoaderButton label="Save" type="submit" className="w-full max-w-xs" isLoading={isArticleCRUDLoading}/>
-          
+              <LoaderButton
+                label="Save"
+                type="submit"
+                className="w-full max-w-xs"
+                isLoading={isArticleCRUDLoading}
+              />
             </div>
           </form>
         </Form>

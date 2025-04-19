@@ -1,16 +1,15 @@
-
 import { NavigationRoutes } from "@utils/constant";
-import { LayoutDashboard, LogOut, NotebookText, Package, Users } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { sidebarItems } from "./AppSidebar";
 
-const sidebarItems = [
-  { id: 1, path: `${NavigationRoutes.BASE}`, icon: LayoutDashboard, label: "Dashboard" },
-  { id: 2, path: `/${NavigationRoutes.ARTICLES}`, icon: Users, label: "Articles" },
-  { id: 3, path: `/${NavigationRoutes.FAQs}`, icon: Package, label: "FAQs" },
-  { id: 4, path: `/${NavigationRoutes.PRIVACY_POLICY}`, icon: NotebookText, label: "Privacy & Policy" },
-];
-
-const AppMobileSideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: VoidFunction }) => {
+const AppMobileSideBar = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: VoidFunction;
+}) => {
   const navigate = useNavigate();
 
   const handleItemClick = (path: string) => {
@@ -25,7 +24,6 @@ const AppMobileSideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: VoidF
 
   return (
     <>
-      
       <div
         className={`fixed h-screen w-52  bg-white dark:bg-gray-900 dark:text-white text-black transition-all duration-300 ${
           isOpen ? "block" : "hidden"
@@ -48,7 +46,7 @@ const AppMobileSideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: VoidF
             <button
               onClick={() => {
                 onClose();
-               handleLogout()
+                handleLogout();
               }}
               className={`flex items-center text-nowrap gap-4 px-4 py-2 cursor-pointer text-red-500  hover:bg-gray-100 dark:hover:bg-gray-800 rounded-tl-full rounded-bl-full `}
             >

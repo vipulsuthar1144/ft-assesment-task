@@ -6,7 +6,7 @@ import getAsyncThunk from "../getAsyncThunk";
 export const FaqsAPI = {
   getAll: getAsyncThunk<IBaseSchema<IFaqsSchema[]>, void>(
     "FaqsAPI/getAll",
-    async (_,signal) => {
+    async (_, signal) => {
       const result = await FaqsService.getAll(signal);
       if (result.data) return result.data;
       return null;
@@ -20,22 +20,22 @@ export const FaqsAPI = {
   //     return null;
   //   }
   // ),
-  create: getAsyncThunk<IBaseSchema<IFaqsSchema>, {question:string,answer:string}>(
-    "FaqsAPI/create",
-    async (data, signal) => {
-      const result = await FaqsService.create(signal, data);
-      if (result.data) return result.data;
-      return null;
-    }
-  ),
-  updateById: getAsyncThunk<IBaseSchema<IFaqsSchema>, { data: {question:string,answer:string}; id: string }>(
-    "FaqsAPI/updateById",
-    async ({ data, id }, signal) => {
-      const result = await FaqsService.updateById(signal, id, data);
-      if (result.data) return result.data;
-      return null;
-    }
-  ),
+  create: getAsyncThunk<
+    IBaseSchema<IFaqsSchema>,
+    { question: string; answer: string }
+  >("FaqsAPI/create", async (data, signal) => {
+    const result = await FaqsService.create(signal, data);
+    if (result.data) return result.data;
+    return null;
+  }),
+  updateById: getAsyncThunk<
+    IBaseSchema<IFaqsSchema>,
+    { data: { question: string; answer: string }; id: string }
+  >("FaqsAPI/updateById", async ({ data, id }, signal) => {
+    const result = await FaqsService.updateById(signal, id, data);
+    if (result.data) return result.data;
+    return null;
+  }),
   deleteById: getAsyncThunk<IBaseSchema<IFaqsSchema>, string>(
     "FaqsAPI/deleteById",
     async (id, signal) => {

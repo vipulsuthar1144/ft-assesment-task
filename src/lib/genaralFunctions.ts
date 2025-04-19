@@ -1,7 +1,3 @@
-
-
-
-
 export function removeAtIndex<T>(arr: T[], index: number): T[] {
   const updatedArray = [...arr]; // Create a copy to avoid mutating the original array
   updatedArray.splice(index, 1);
@@ -14,4 +10,3 @@ export function appendAtIndex<T>(arr: T[], item: T, index: number): T[] {
   updatedArray.splice(index, 0, item);
   return updatedArray;
 }
-
