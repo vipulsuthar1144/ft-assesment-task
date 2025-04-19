@@ -8,8 +8,7 @@ export const ArticleService = {
       signal,
     });
   },
-  create: async (signal: AbortSignal, data: any) => {
-  console.log([...data.entries()]);
+  create: async (signal: AbortSignal, data: FormData) => {
     return await apiInstance.post(
       `${ApiEndpoints.createArticle}`,
       data,

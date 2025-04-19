@@ -2,11 +2,15 @@ import { IQueryParams } from "@schemas/base.schema";
 import _ from "lodash"
 
 export enum ApiEndpoints {
-  login = "login",
-  getArticle = "Article/getArticle",
-  createArticle = "Article/createArticle",
-  updateArticle = "Article/updateArticle",
-  deleteArticle = "Article/deleteArticle"
+  login = "admin/login",
+  getArticle = "admin/Article/getArticle",
+  createArticle = "admin/Article/createArticle",
+  updateArticle = "admin/Article/updateArticle",
+  deleteArticle = "admin/Article/deleteArticle",
+  getFaqs = "faq/all",
+  createFaqs = "faq/add",
+  updateFaqs = "faq/update",
+  deleteFaqs = "faq/delete",
 }
 
 export const ITEM_PER_PAGE = 50
