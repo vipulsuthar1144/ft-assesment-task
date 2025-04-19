@@ -1,54 +1,84 @@
-# React + TypeScript + Vite
+# FT Assessment Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a solution to the FT assessment task. It demonstrates a well-structured and responsive web application built with modern frontend technologies.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 **Authentication**
+  - Login page with form validation
+  - Secure route protection
 
-## Expanding the ESLint configuration
+- 📊 **Dashboard**
+  - Dynamic user, buyer, seller, and earnings stats
+  - Graphs and charts for visual representation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📚 **Articles Management (CRUD)**
+  - Create, edit, delete, and view articles
+  - Rich text support and clean UI
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+- ❓ **FAQs Management (CRUD)**
+  - Add, update, delete, and display frequently asked questions
+
+- ⚙️ **UX Enhancements**
+  - Loading indicators and error handling for all API calls
+  - Responsive design across devices
+  - Smooth UI transitions and interactions
+
+## 🛠 Tech Stack
+
+- **React** with **TypeScript**
+- **Tailwind CSS** for styling
+- **React Router DOM** for routing
+- **React Query / Axios** for API data fetching
+- **Framer Motion / Recharts** (if used) for animation and charts
+
+
+👉 **Login Credentials :-**
+
+|               |                     |
+| ------------- | ------------------- |
+| **Email:**    | `vipul@gmail.com` |
+| **Password:** | `admin@1234` |
+
+
+## **🔧 Installation & Setup**
+
+1️⃣ **Clone the repository**
+
+```sh
+git clone https://github.com/vipulsuthar1144/ft-assesment-task.git
+cd my-music-web
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2️⃣ **Install dependencies**
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+```sh
+npm install
 ```
+
+3️⃣ **Set up environment variables**
+
+Create a `.env` file in the root directory and add:
+
+```
+VITE_APP_PORT = 5173
+
+VITE_BASE_API_URL = https://mamun-reza-freeshops-backend.vercel.app/api/v1/
+
+```
+
+ **Run the project**
+
+```sh
+npm run dev
+```
+
+The app will be available at **http://localhost:5173/**
+
+
+## **📬 Let's Connect!**
+
+Got feedback or ideas? Feel free to reach out! 🎶
+
+- 📧 Email: vipulsuthar1144@gmail.com
+- 💼 LinkedIn: [Vipul Suthar | LinkedIn](https://www.linkedin.com/in/vipulsuthar1144)

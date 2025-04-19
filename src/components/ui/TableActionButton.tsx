@@ -1,4 +1,3 @@
-import { Pencil, Trash2 } from "lucide-react";
 
 interface ITabbleActionButton {
   onEyeClick?: () => void;

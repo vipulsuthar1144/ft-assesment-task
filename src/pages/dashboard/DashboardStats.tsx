@@ -2,12 +2,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { IDashboardSchema } from "@schemas/dashboard.schema";
 import {
-  ArrowDownRight,
-  ArrowUpLeft,
-  LineChart,
-  Package,
-  Timer,
-  Users,
+    ArrowDownRight,
+    ArrowUpLeft,
+    LineChart,
+    Package,
+    Timer,
+    Users,
 } from "lucide-react";
 
 interface StatCardProps {
@@ -26,7 +26,6 @@ const StatCard = ({
   icon,
   change,
   positive = true,
-  note,
   color = "gray",
 }: StatCardProps) => {
   return (

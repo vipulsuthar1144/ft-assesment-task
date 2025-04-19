@@ -1,4 +1,4 @@
-import { apiInstance, baseInstance } from "@config/axios/axios.config";
+import { apiInstance } from "@config/axios/axios.config";
 import { ApiEndpoints } from "@utils/api-constant";
 
 export const DashbordService = {
