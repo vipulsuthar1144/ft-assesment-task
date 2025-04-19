@@ -1,3 +1,4 @@
+import { bgLogin } from "@assets/index";
 import useLocalStorage from "@hooks/useLocalStorage";
 import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
 import { Navigate, Outlet } from "react-router-dom";
@@ -9,16 +10,17 @@ const PublicLayout = () => {
   }
   return (
     <div
+      className="w-full h-full overflow-hidden max-h-[100dvh]"
       style={{
-        width: "100%",
-        height: "100vh",
-        flex: 1,
-        backgroundColor: "black",
-        // display: "flex",
-        // justifyContent: "center",
+        backgroundImage: `url(${bgLogin})`,
+        backgroundSize: "stretch",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}
     >
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };

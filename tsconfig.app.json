@@ -41,7 +41,7 @@
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
       "@theme/*": ["src/theme/*"],
-      "@utils/*": ["src/utils/*"],
+      "@utils/*": ["src/lib/*"],
       "@/*": ["src/*"]
     }
   },

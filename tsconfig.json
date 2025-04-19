@@ -3,5 +3,29 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@animations/*": ["src/components/animations/*"],
+      "@dialogs/*": ["src/components/dialogs/*"],
+      "@fallback/*": ["src/components/fallback/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@skeletons/*": ["src/components/skeletons/*"],
+      "@components/*": ["src/components/*"],
+      "@config/*": ["src/config/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@pages/*": ["src/pages/*"],
+      "@routes/*": ["src/routes/*"],
+      "@schemas/*": ["src/schemas/*"],
+      "@services/*": ["src/services/*"],
+      "@store/*": ["src/store/*"],
+      "@styles/*": ["src/styles/*"],
+      "@theme/*": ["src/theme/*"],
+      "@utils/*": ["src/lib/*"],
+      "@/*": ["src/*"]
+    }
+  }
 }

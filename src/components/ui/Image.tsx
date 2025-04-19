@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Skeleton } from "./skeleton";
 
 interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   lowResSrc?: string;
@@ -63,11 +64,7 @@ const Image: React.FC<ImageProps> = ({
   }, [lowResSrc, highResSrc]);
 
   if (loading) {
-    return (
-      <div className="w-full h-full grid place-items-center">
-        <div className={loaderClassName} />
-      </div>
-    );
+    return <Skeleton className="w-full h-full rounded-sm" />;
   }
 
   if (error) {
@@ -80,6 +77,7 @@ const Image: React.FC<ImageProps> = ({
     <img
       src={src!}
       alt={alt}
+      loading="lazy"
       className={`object-cover w-full h-full ${imgClassName}`}
       {...rest}
     />

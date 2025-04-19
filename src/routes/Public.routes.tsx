@@ -1,10 +1,10 @@
-import Home from "@pages/Home";
+import SignIn from "@pages/auth/SignIn";
 import { RouteObject } from "react-router-dom";
 
 const PublicRoutes: RouteObject[] = [
   {
     index: true,
-    element: <Home />,
+    element: <SignIn />,
   },
 ];
 

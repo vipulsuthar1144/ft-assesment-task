@@ -1,4 +1,4 @@
-import { LocalStorageKeys } from "@utils/constant";
+import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
 import toastUtils from "@utils/toast";
 import axios from "axios";
 
@@ -40,7 +40,7 @@ const responseErrorHandler = (error: any) => {
     if (error.response.status === 401) {
       localStorage.clear();
       toastUtils.error("Session Expired");
-      window.location.href = "/auth";
+      window.location.href = `/${NavigationRoutes.LOGIN}`;
       // window.location.href = `/auth?message=${encodeURIComponent("Session timeout")}&&path=${JSON.stringify(window.location)}`;
     } else if (error?.response?.status >= 500) {
       if (error.response?.data?.Message) {
