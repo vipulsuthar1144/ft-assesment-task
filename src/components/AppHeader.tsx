@@ -8,8 +8,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { appLogo } from "@assets/index";
 import useLocalStorage from "@hooks/useLocalStorage";
 import { IUserSchema } from "@schemas/signin.schema";
+import Image from "@ui/Image";
 import { LocalStorageKeys, NavigationRoutes } from "@utils/constant";
 import _ from "lodash";
 import {
@@ -17,6 +19,7 @@ import {
   ChevronDownCircle,
   Key,
   LogOut,
+  Menu,
   SearchIcon,
   Settings,
   UserCircle2
@@ -24,7 +27,7 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AppHeader() {
+export default function AppHeader({ onMenuClick }: { onMenuClick: VoidFunction }) {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const [ADMIN_DATA] = useLocalStorage<IUserSchema>(
@@ -34,9 +37,13 @@ export default function AppHeader() {
   const navigate = useNavigate();
 
   return (
-    <header className="w-full top-0 sticky flex items-center justify-between px-5 py-5 border-b bg-white shadow-md z-50">
+    <header className="w-full top-0 sticky flex items-center justify-between px-5 py-5 bg-white  z-50">
+      <div className="px-5 text-center">
+        <Image highResSrc={appLogo} alt="Logo" className="h-12 aspect-square" />
+      </div>
+     
       {/* Search Bar */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 hidden md:flex items-center justify-center">
         <div className="relative max-w-sm w-full">
           <Input placeholder="Search" className="pl-10 bg-gray-100" />
           <span className="absolute left-3 top-2 text-gray-400">
@@ -65,7 +72,7 @@ export default function AppHeader() {
 
         <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
           <PopoverTrigger asChild>
-            <div className="flex items-center gap-2 cursor-pointer relative z-50 px-5">
+            <div className=" hidden md:flex items-center gap-2 cursor-pointer relative z-50 px-5">
               <Avatar className="w-8 h-8">
                 <AvatarImage src="https://randomuser.me/api/portraits/men/75.jpg" />
                 <AvatarFallback>
@@ -114,6 +121,14 @@ export default function AppHeader() {
             </div>
           </PopoverContent>
         </Popover>
+
+         <button
+          onClick={onMenuClick}
+          className="p-2 rounded hover:bg-gray-100 block md:hidden dark:hover:bg-gray-800"
+          aria-label="Toggle Dark Mode"
+        >
+          <Menu size={24} />
+        </button>
       </div>
     </header>
   );

@@ -11,6 +11,10 @@ export enum ApiEndpoints {
   createFaqs = "faq/add",
   updateFaqs = "faq/update",
   deleteFaqs = "faq/delete",
+  getAutoDealership = "admin/AutoDealerShip/allAutoDealerShip",
+  createAutoDealership = "admin/AutoDealerShip/addAutoDealerShip",
+  updateAutoDealership = "admin/AutoDealerShip/updateAutoDealerShip",
+  deleteAutoDealership = "admin/AutoDealerShip/deleteAutoDealerShip",
 }
 
 export const ITEM_PER_PAGE = 50
