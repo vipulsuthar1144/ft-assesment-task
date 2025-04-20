@@ -82,11 +82,13 @@ const Articles = () => {
       key: "image",
       label: "Image",
       render: (_: string, row: IArticleSchema) => (
-        <Image
-          highResSrc={row.image ?? ""}
-          alt="Article"
-          className="w-12 h-12 rounded object-cover"
-        />
+        <div className="w-12 h-12">
+          <Image
+            highResSrc={row.image ?? ""}
+            alt="Article"
+            className="w-12 h-12 rounded object-cover"
+          />
+        </div>
       ),
     },
     {

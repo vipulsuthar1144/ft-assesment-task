@@ -1,8 +1,8 @@
-import AppLoader from "@components/AppLoader";
 import { ITEM_PER_PAGE } from "@utils/api-constant";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import React from "react";
 import { Button } from "./button";
+import { Skeleton } from "./skeleton";
 
 interface Column {
   key: string;
@@ -39,9 +39,10 @@ const DataTable: React.FC<DataTableProps> = ({
   const to = from + data.length - 1;
   if (isLoading) {
     return (
-      <div className="w-full max-w-full min-h-[50vh] p-5  [&::-webkit-scrollbar]:w-0  bg-white border-2 rounded-xl shadow-md">
-        <AppLoader />
-      </div>
+      // <div className="w-full max-w-full min-h-[50vh] p-5  [&::-webkit-scrollbar]:w-0  bg-white border-2 rounded-xl shadow-md">
+      //   <AppLoader />
+      // </div>
+       <Skeleton className="w-full mb-6 aspect-[4/1]" />
     );
   }
 

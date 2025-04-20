@@ -18,9 +18,11 @@ export enum ApiEndpoints {
   dashboard = "admin/getDashboard",
 }
 
-export const ITEM_PER_PAGE = 50;
+export const ITEM_PER_PAGE = 20;
 
 export const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
+
+
 
 export const parseQueryParams = <U extends IQueryParams>(
   endpoint: string,
