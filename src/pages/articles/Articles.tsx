@@ -70,8 +70,9 @@ const Articles = () => {
   };
   const listenerOnDeleteButton = async (data: IArticleSchema) => {
     if (data._id) {
+       setSelectedData(data);
       await dispatch(ArticleAPI.deleteById(data._id)).unwrap();
-
+ setSelectedData(null);
       toastUtils.success("Article Deleted");
     }
   };
@@ -118,6 +119,7 @@ const Articles = () => {
           onEditClick={() => {
             listenerOnEditButton(data);
           }}
+          isDeleteLoading={selectedData?._id == data._id}
         />
       ),
     },

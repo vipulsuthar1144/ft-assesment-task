@@ -57,12 +57,13 @@ const Faqs = () => {
   };
   const listenerOnDeleteButton = async (data: IFaqsSchema) => {
     if (data._id) {
+      setSelectedData(data)
       await dispatch(FaqsAPI.deleteById(data._id))
         .unwrap()
         .then(() => {
           return dispatch(removeItemFromFaqslist(data));
         });
-
+setSelectedData(null)
       toastUtils.success("Faqs Deleted");
     }
   };
@@ -98,6 +99,7 @@ const Faqs = () => {
           onEditClick={() => {
             listenerOnEditButton(data);
           }}
+            isDeleteLoading={selectedData?._id == data._id}
         />
       ),
     },

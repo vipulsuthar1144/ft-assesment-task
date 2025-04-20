@@ -160,11 +160,11 @@ const Sidebar = () => {
               )}
             </div>
             {openDropdown === item.id && item.children && (
-              <ul className="ml-5 mt-1 bg-gray-50 border border-gray-200 rounded-md shadow-md w-[80%]">
+              <ul className="ml-5 mt- absolute top-10 bg-gray-50 border z-20 border-gray-200 rounded-md shadow-md w-[70%]">
                 {item.children.map((child, idx) => (
                   <li
                     key={idx}
-                    className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer"
                   >
                     {child}
                   </li>
